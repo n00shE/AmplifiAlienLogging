@@ -46,8 +46,8 @@ Wifi Data Example
 '''
 
 
-class Amplifi_gather():
-    def __init__(self, ip, password, debug):
+class AmplifiGather():
+    def __init__(self, ip, password, debug=False):
         self.main = ""
         self.mesh = ""
         self.GIG = 1000000000
@@ -208,7 +208,7 @@ class Amplifi_gather():
                 l.append(key1)
         return l    
 
-    def network_monitor(self, interval: int, sound: bool, file: bool, ignore: list, exp: bool) -> None:
+    def network_monitor(self, interval: int, sound: bool, file: bool, ignore: str, exp: bool) -> None:
         if ignore == None:
             ignore = "NULL"
         #print(ignore)
@@ -304,12 +304,12 @@ class Amplifi_gather():
                 try:
                     if self.wifidb[mac]['SignalQuality'] < 60 and self.wifidb[mac]['SignalQuality'] - wifiolddb[mac]['SignalQuality'] > 10:
                         if sound: chime.warning()
-                        s.append(f"Wifi device {self.wifidb[mac]['Description']} has poor signal quality {self.wifidb[mac]['SignalQuality']} @ {self.time}\n")
+                        s.append(f"{self.wifidb[mac]['Router']} {self.wifidb[mac]['Band']}GHz {self.wifidb[mac]['Type']}: Wifi device {self.wifidb[mac]['Description']} has poor signal quality {self.wifidb[mac]['SignalQuality']} @ {self.time}\n")
                 except KeyError:
                     try:
                         if self.wifidb[mac]['SignalQuality'] < 60 and self.wifidb[mac]['SignalQuality'] - wifiolddb[mac]['SignalQuality'] > 10:
                             if sound: chime.warning()
-                            s.append(f"Wifi device {self.wifidb[mac]['HostName']} has poor signal quality {self.wifidb[mac]['SignalQuality']} @ {self.time}\n")
+                            s.append(f"{self.wifidb[mac]['Router']} {self.wifidb[mac]['Band']}GHz {self.wifidb[mac]['Type']}: Wifi device {self.wifidb[mac]['HostName']} has poor signal quality {self.wifidb[mac]['SignalQuality']} @ {self.time}\n")
                     except KeyError:
                         pass
                 if exp:
@@ -335,7 +335,7 @@ if __name__ == '__main__':
     parser.add_argument('ip', action='store', type=str, help="The ip address of your main Amplifi Alien Router")
     parser.add_argument('password', action='store', type=str, help="The password to your router")
     parser.add_argument('-v','--verbose', action='store_true', help="Enable debug messages")
-    parser.add_argument('-i','--interval', action='store', type=int, default=10, help="Interval to check router for data in seconds (default is 10)")
+    parser.add_argument('-i','--interval', action='store', type=int, default=10, help="Interval to get data from router in seconds (default is 10)")
     parser.add_argument('-o','--outfile', action='store_true', help="Saves log in current directory, will append if file exists (Month-Day-Year-netlog.txt)")
     parser.add_argument('-s','--sound', action='store_true', help="Enable sounds for device updates and warnings (Requires chime library)")
     parser.add_argument('-b','--block', action='store', type=str, help="Will not record or print info for devices containing this string")
@@ -346,5 +346,5 @@ if __name__ == '__main__':
         import chime
         chime.theme('material')
     #print(args)
-    ag = Amplifi_gather(args.ip, args.password, args.verbose)
+    ag = AmplifiGather(args.ip, args.password, args.verbose)
     ag.network_monitor(args.interval, args.sound, args.outfile, args.block, args.exp)
