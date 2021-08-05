@@ -338,7 +338,7 @@ if __name__ == '__main__':
     parser.add_argument('-i','--interval', action='store', type=int, default=10, help="Interval to check router for data in seconds (default is 10)")
     parser.add_argument('-o','--outfile', action='store_true', help="Saves log in current directory, will append if file exists (Month-Day-Year-netlog.txt)")
     parser.add_argument('-s','--sound', action='store_true', help="Enable sounds for device updates and warnings (Requires chime library)")
-    parser.add_argument('-b','--block', action='store', type=str, help="Will not record info for devices containing this string")
+    parser.add_argument('-b','--block', action='store', type=str, help="Will not record or print info for devices containing this string")
     parser.add_argument('-e','--exp', action='store_true', help="Enable expiremental features")
 
     args = parser.parse_args()
