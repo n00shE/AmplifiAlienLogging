@@ -12,7 +12,7 @@ import time
 
 
 '''
-Wifi Data Example
+Wifi Data Example (NOTE: not all clients have all fields)
 
 "Address": "10.0.1.210",
 "Description": "*****",
@@ -42,6 +42,11 @@ Wifi Data Example
 "TxBytes_60sec": 148526,
 "TxMcs": 9,
 "TxMhz": 80
+
+Data fields added by this script
+"Type": "U",
+"Band": "5",
+"Router": "Main"
 '''
 
 
