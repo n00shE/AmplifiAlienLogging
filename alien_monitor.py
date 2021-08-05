@@ -139,6 +139,8 @@ class AmplifiGather():
                             db[mac] = self.json[1][rmac][net][t][mac]
                             if "Device" in t:
                                 db[mac]['Type'] = "DS"
+                            elif "Guest" in t:
+                                db[mac]['Type'] = "G"
                             else:
                                 db[mac]['Type'] = "U"
                             if "2.4" in net:
