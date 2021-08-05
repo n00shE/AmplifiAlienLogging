@@ -10,7 +10,6 @@ from datetime import datetime
 import re
 import time
 
-#from requests.sessions import session
 
 '''
 Wifi Data Example
@@ -247,7 +246,7 @@ class AmplifiGather():
                     try:
                         s.append(f"{self.wifidb[newmac]['Router']} {self.wifidb[newmac]['Band']}GHz {self.wifidb[newmac]['Type']}: Wifi device {self.wifidb[newmac]['HostName']} ({self.wifidb[newmac]['Address']}) joined @ {self.time} +-{interval}s\n")
                     except KeyError:
-                        s.append(f"Wifi device joined with MAC {newmac}")
+                        s.append(f"{self.wifidb[newmac]['Router']} {self.wifidb[newmac]['Band']}GHz {self.wifidb[newmac]['Type']}: Wifi device joined with MAC {newmac}\n")
             for newmac in ethnew:
                 if sound: chime.info()
                 try:
@@ -256,7 +255,7 @@ class AmplifiGather():
                     try:
                         s.append(f"Ethernet device {self.ethernetdb[newmac]['host_name']} ({self.ethernetdb[newmac]['ip']}) joined @ {self.time} +-{interval}s\n")
                     except KeyError:
-                        s.append(f"Ethernet device joined with MAC {newmac}")
+                        s.append(f"Ethernet device joined with MAC {newmac}\n")
             for newmac in wifileave:
                 if sound: chime.error()
                 try:
@@ -266,7 +265,7 @@ class AmplifiGather():
                     try:
                         s.append(f"{wifiolddb[newmac]['Router']} {wifiolddb[newmac]['Band']}GHz {wifiolddb[newmac]['Type']}: Wifi device {wifiolddb[newmac]['HostName']} ({wifiolddb[newmac]['Address']}) left @ {self.time} +-{interval}s\n")
                     except KeyError:
-                        s.append(f"Wifi device left with MAC {newmac}")
+                        s.append(f"{self.wifidb[newmac]['Router']} {self.wifidb[newmac]['Band']}GHz {self.wifidb[newmac]['Type']}: Wifi device left with MAC {newmac}\n")
             for newmac in ethleave:
                 if sound: chime.error()
                 try:
@@ -275,7 +274,7 @@ class AmplifiGather():
                     try:
                         s.append(f"Ethernet device {etholddb[newmac]['host_name']} ({etholddb[newmac]['ip']}) left @ {self.time} +-{interval}s\n")
                     except KeyError:
-                        s.append(f"Ethernet device left with MAC {newmac}")
+                        s.append(f"Ethernet device left with MAC {newmac}\n")
             for mac in self.wifidb:
                 try:
                     if ignore in self.wifidb[mac]['Description']: continue
