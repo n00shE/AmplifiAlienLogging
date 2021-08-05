@@ -84,11 +84,11 @@ Here is an example of a connection message.
 Main 2.4GHz U: Wifi device Johns-iPhone (10.0.1.100) joined @ 10:42:40 +-10s
 Mesh 2.4GHz U: Wifi device Johns-iPhone (10.0.1.100) left @ 10:43:52 +-10s
 ```
-Main or Mesh: specifies which router the device is connected to. (Router or MeshPoint)
-2.4GHz or 5GHz: specifies which frequency the device is on.  
-U or DS or G: specifices whether the device is on the User network (regular), Device specific (separate SSID setting on Router), or Guest network.  
+**Main or Mesh**: specifies which router the device is connected to. (Router or MeshPoint)  
+**2.4GHz or 5GHz**: specifies which frequency the device is on.  
+**U or DS or G**: specifices whether the device is on the User network (regular), Device specific (separate SSID setting on Router), or Guest network.  
 Script will use description for device name if set in the Amplifi app, otherwise hostname. If no hostname, just MAC address is printed.  
-Then the IP address is printed along with the time +- the polling interval.  
+Finally, the IP address is printed along with the time +- the polling interval.  
 
 ### Message Types:
 Join and leave messages.  
